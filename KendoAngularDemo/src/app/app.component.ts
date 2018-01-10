@@ -4,7 +4,7 @@ import { products } from './products';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['../../node_modules/@progress/kendo-theme-default/dist/all.css']
+  styleUrls: []
 })
 export class AppComponent {
   title = 'app';

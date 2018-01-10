@@ -1,4 +1,5 @@
 <div>
+    <span class="k-icon k-i-twitter"></span>
   <div id="search">
     <table style="width:100%">
       <tr>
@@ -25,13 +26,16 @@
                   [format]="'yyyy/MM/dd'"
                   [value]="value"
               ></kendo-datepicker>~
+              <kendo-datepicker
+                  [format]="'yyyy/MM/dd'"
+                  [value]="value"
+              ></kendo-datepicker>
         </td>
       </tr>
       <tr>
         <th>科系</th>
         <td>
             <kendo-multiselect [data]="listItems" [value]="itemValue" [placeholder]="'Your favorite sports'"></kendo-multiselect>
-            
         </td>
         <th>年級</th>
         <td>
@@ -43,8 +47,8 @@
   </div>
   <div id="btns">
     <button kendoButton (click)="onButtonClick()" [primary]="true">查詢</button>
-    <button>清除</button>
-    <button>新增</button>
+    <button kendoButton (click)="onButtonClick()" >清除</button>
+    <button kendoButton (click)="onButtonClick()" [primary]="true">新增</button>
   </div>
   <div id="grid">
       <kendo-grid [data]="gridData" [height]="410">
