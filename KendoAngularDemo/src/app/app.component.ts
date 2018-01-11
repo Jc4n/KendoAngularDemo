@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { products } from './products';
+import { sampleProducts } from './products';
 import { QueryModel } from './model/queryModel';
+import { GridModel } from './model/gridModel';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,7 @@ import { QueryModel } from './model/queryModel';
 export class AppComponent {
   title = 'app';
   public value: Date = new Date();
-  defaultgradeList:{ gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
+  defaultgradeList: { gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
   gradeList: Array<{ gradeName: string, grade: number }> = [
     { gradeName: "一年級", grade: 1 },
     { gradeName: "二年級", grade: 2 },
@@ -24,7 +25,7 @@ export class AppComponent {
     { deptName: "中文系", deptId: 6 },
   ];
   public itemValue = ['Basketball', 'Cricket'];
-  public gridData: any[] = products;
+  public gridData: GridModel[] = sampleProducts;
   queryModel = new QueryModel();
   onButtonClick() {
     alert('search!');
@@ -34,5 +35,20 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.queryModel);
+    if (this.queryModel.name) {
+      this.gridData = this.gridData.filter(item => item.name.indexOf(this.queryModel.name) > -1);
+    }
+  }
+  changeDept($event) {
+    console.log($event);
+    this.queryModel.dept = new Array<number>();
+    for (var i = 0; i < $event.length; i++) {
+      console.log($event[i]);
+      this.queryModel.dept.push($event[i].deptId);
+    }
+
+  }
+  changeGrade($event) {
+    this.queryModel.grade = $event.grade;
   }
 }
