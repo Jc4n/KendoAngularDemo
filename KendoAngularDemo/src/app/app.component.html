@@ -1,32 +1,37 @@
 <div>
     <span class="k-icon k-i-twitter"></span>
-  <div id="search">
+  <form #searchForm="ngForm" (ngSubmit)="onSubmit()">
+      {{diagnostic}}
     <table style="width:100%">
       <tr>
         <th>姓名</th>
         <td>
-          <input kendoTextBox >
+          <input kendoTextBox id="name" [(ngModel)]="queryModel.name" name="name" required  #name="ngModel">
+          <div [hidden]="name.valid || name.pristine"
+     class="alert alert-danger">
+  Name is required
+</div>
         </td>
         <th>性別</th>
         <td>
-            <input type="radio" id="r1" name="rg" class="k-radio" checked />
-            <label class="k-radio-label" for="r1">男</label><br />
-            <input type="radio" id="r2" name="rg" class="k-radio" checked />
-            <label class="k-radio-label" for="r2">女</label>
+            <input type="radio" id="sexM" [(ngModel)]="queryModel.sex" name="sex" class="k-radio" checked />
+            <label class="k-radio-label" for="sexM">男</label><br />
+            <input type="radio" id="sexF" [(ngModel)]="queryModel.sex" name="sex" class="k-radio" checked />
+            <label class="k-radio-label" for="sexF">女</label>
         </td>
       </tr>
       <tr>
         <th>學號</th>
         <td>
-          <input type="number">
+          <input type="number" id="id" [(ngModel)]="queryModel.id" name="id">
         </td>
         <th>生日</th>
         <td>
-            <kendo-datepicker
+            <kendo-datepicker id="birthSt" [(ngModel)]="queryModel.birthSt" name="birthSt"
                   [format]="'yyyy/MM/dd'"
                   [value]="value"
               ></kendo-datepicker>~
-              <kendo-datepicker
+              <kendo-datepicker id="birthEnd" [(ngModel)]="queryModel.birthEnd" name="birthEnd"
                   [format]="'yyyy/MM/dd'"
                   [value]="value"
               ></kendo-datepicker>
@@ -35,19 +40,22 @@
       <tr>
         <th>科系</th>
         <td>
-            <kendo-multiselect [data]="listItems" [value]="itemValue" [placeholder]="'Your favorite sports'"></kendo-multiselect>
+            <kendo-multiselect id="dept"  [(ngModel)]="queryModel.dept" name="dept" 
+            [data]="deptList" [textField]="'deptName'" [valueField]="'deptId'"  
+            [placeholder]="'Your favorite sports'"></kendo-multiselect>
         </td>
         <th>年級</th>
         <td>
-            <kendo-autocomplete [data]="listItems" [placeholder]="'Your favorite sport'">
-              </kendo-autocomplete>
+            <kendo-dropdownlist  id="grade"  [(ngModel)]="queryModel.grade" name="grade" 
+            [data]="gradeList" [defaultItem]="defaultgradeList" [textField]="'gradeName'" [valueField]="'grade'">
+              </kendo-dropdownlist >
         </td>
       </tr>
     </table>
-  </div>
+  </form>
   <div id="btns">
-    <button kendoButton (click)="onButtonClick()" [primary]="true">查詢</button>
-    <button kendoButton (click)="onButtonClick()" >清除</button>
+    <button kendoButton type="submit" [primary]="true" >查詢</button>
+    <button kendoButton (click)="searchForm.reset()" >清除</button>
     <button kendoButton (click)="onButtonClick()" [primary]="true">新增</button>
   </div>
   <div id="grid">
