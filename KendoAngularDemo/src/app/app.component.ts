@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-import { sampleProducts } from './products';
+import { Component, OnInit } from '@angular/core';
 import { QueryModel } from './model/queryModel';
 import { GridModel } from './model/gridModel';
+import { NgForm } from '@angular/forms';
+import { GridDataService } from './grid-data.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: []
 })
-export class AppComponent {
-  title = 'app';
-  public value: Date = new Date();
+export class AppComponent implements OnInit {
+  constructor(private gridDataService: GridDataService) { }
+  public gridData: GridModel[];
   defaultgradeList: { gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
   gradeList: Array<{ gradeName: string, grade: number }> = [
     { gradeName: "一年級", grade: 1 },
@@ -24,26 +26,49 @@ export class AppComponent {
     { deptName: "應外系", deptId: 5 },
     { deptName: "中文系", deptId: 6 },
   ];
-  public itemValue = ['Basketball', 'Cricket'];
-  public gridData: GridModel[] = sampleProducts;
+  
   queryModel = new QueryModel();
+  ngOnInit() {
+   this.gridDataService.getAllData().subscribe(
+    r => {
+      this.gridData = r;
+    });
+  }
   onButtonClick() {
     alert('search!');
   }
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.queryModel); }
-
-  onSubmit() {
-    console.log(this.queryModel);
-    if (this.queryModel.name) {
-      this.gridData = this.gridData.filter(item => item.name.indexOf(this.queryModel.name) > -1);
-    }
+ 
+  onSubmit(form: NgForm) {
+    this.gridDataService.getAllData().subscribe(
+      r => {
+        this.gridData = r;
+        //加入查詢條件
+        if (this.queryModel.name) {
+          this.gridData = this.gridData.filter(item => item.name.indexOf(this.queryModel.name) > -1);
+        }
+        if (this.queryModel.id) {
+          this.gridData = this.gridData.filter(item => item.id === this.queryModel.id);
+        }
+        if (this.queryModel.sex) {
+          this.gridData = this.gridData.filter(item => item.sex === this.queryModel.sex);
+        }
+        if (this.queryModel.grade) {
+          this.gridData = this.gridData.filter(item => item.grade === this.queryModel.grade);
+        }
+        if (this.queryModel.dept && this.queryModel.dept.length > 0) {
+          this.gridData = this.gridData.filter(item => this.queryModel.dept.includes(item.deptId));
+        }
+        if (this.queryModel.birthSt) {
+          this.gridData = this.gridData.filter(item => new Date(item.birth) >= this.queryModel.birthSt);
+        }
+        if (this.queryModel.birthEnd) {
+          this.gridData = this.gridData.filter(item => new Date(item.birth) <= this.queryModel.birthEnd);
+        }
+      });
   }
   changeDept($event) {
-    console.log($event);
     this.queryModel.dept = new Array<number>();
     for (var i = 0; i < $event.length; i++) {
-      console.log($event[i]);
       this.queryModel.dept.push($event[i].deptId);
     }
 
@@ -51,4 +76,5 @@ export class AppComponent {
   changeGrade($event) {
     this.queryModel.grade = $event.grade;
   }
+
 }
