@@ -18,7 +18,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { RippleModule } from '@progress/kendo-angular-ripple';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogModule } from '@progress/kendo-angular-dialog';
-import { SexPipe } from './customizePipes/sex.pipe';
+import { genderPipe } from './customizePipes/gender.pipe';
 
 import { GridDataService } from './grid-data.service';
 
@@ -26,7 +26,7 @@ import { GridDataService } from './grid-data.service';
 @NgModule({
   declarations: [
     AppComponent,
-    SexPipe
+    genderPipe
   ],
   imports: [
     BrowserModule,

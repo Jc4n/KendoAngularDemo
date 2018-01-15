@@ -1,7 +1,7 @@
 export interface GridModel {
     id: number,
     name: string,
-    sex: string,
+    gender: string,
     birth: Date,
     deptName: string,
     deptId: number,

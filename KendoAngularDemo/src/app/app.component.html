@@ -11,10 +11,10 @@
                 </td>
                 <th>性別</th>
                 <td>
-                    <input type="radio" id="sexM" name="sex" [(ngModel)]="queryModel.sex" class="k-radio" value="M" />
-                    <label class="k-radio-label" for="sexM">男</label>
-                    <input type="radio" id="sexF" name="sex" [(ngModel)]="queryModel.sex" class="k-radio" value="F" />
-                    <label class="k-radio-label" for="sexF">女</label>
+                    <input type="radio" id="genderM" name="gender" [(ngModel)]="queryModel.gender" class="k-radio" value="M" />
+                    <label class="k-radio-label" for="genderM">男</label>
+                    <input type="radio" id="genderF" name="gender" [(ngModel)]="queryModel.gender" class="k-radio" value="F" />
+                    <label class="k-radio-label" for="genderF">女</label>
                 </td>
             </tr>
             <tr>
@@ -55,9 +55,9 @@
             </kendo-grid-column>
             <kendo-grid-column field="id" title="學號" width="100">
             </kendo-grid-column>
-            <kendo-grid-column field="sex" title="性別" width="50">
+            <kendo-grid-column field="gender" title="性別" width="50">
                 <ng-template kendoGridCellTemplate let-dataItem>
-                    {{dataItem.sex | sex}}
+                    {{dataItem.gender | gender}}
                 </ng-template>
             </kendo-grid-column>
             <kendo-grid-column field="gradeName" title="年級" width="100">

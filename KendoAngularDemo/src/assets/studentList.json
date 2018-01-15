@@ -2,7 +2,7 @@
     {
         "id": 19392,
         "name": "Nash Casey",
-        "sex": "F",
+        "gender": "F",
         "birth": "Sat Sep 22 2001 22:58:17 GMT+0800 (台北標準時間)",
         "deptId": 5,
         "deptName": "應外系",
@@ -14,7 +14,7 @@
     {
         "id": 17464,
         "name": "Olive Mckee",
-        "sex": "F",
+        "gender": "F",
         "birth": "Fri Apr 04 2014 18:22:17 GMT+0800 (台北標準時間)",
         "deptId": 6,
         "deptName": "中文系",
@@ -26,7 +26,7 @@
     {
         "id": 12932,
         "name": "Maricela Edwards",
-        "sex": "F",
+        "gender": "F",
         "birth": "Wed Jan 12 1994 22:45:17 GMT+0800 (台北標準時間)",
         "deptId": 5,
         "deptName": "應外系",
@@ -38,7 +38,7 @@
     {
         "id": 11753,
         "name": "Lamb Todd",
-        "sex": "F",
+        "gender": "F",
         "birth": "Mon Apr 14 2008 18:12:11 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -50,7 +50,7 @@
     {
         "id": 20659,
         "name": "Marcy Snow",
-        "sex": "F",
+        "gender": "F",
         "birth": "Wed Feb 16 1994 06:55:21 GMT+0800 (台北標準時間)",
         "deptId": 3,
         "deptName": "資工系",
@@ -62,7 +62,7 @@
     {
         "id": 12277,
         "name": "Walton Leonard",
-        "sex": "M",
+        "gender": "M",
         "birth": "Thu Jun 06 2002 12:22:07 GMT+0800 (台北標準時間)",
         "deptId": 3,
         "deptName": "資工系",
@@ -74,7 +74,7 @@
     {
         "id": 20539,
         "name": "Howard Flores",
-        "sex": "M",
+        "gender": "M",
         "birth": "Sat Dec 23 2017 10:47:54 GMT+0800 (台北標準時間)",
         "deptId": 1,
         "deptName": "資管系",
@@ -86,7 +86,7 @@
     {
         "id": 14398,
         "name": "Louella Acosta",
-        "sex": "F",
+        "gender": "F",
         "birth": "Mon Jun 20 2005 20:54:54 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -98,7 +98,7 @@
     {
         "id": 11726,
         "name": "Bernard Sampson",
-        "sex": "M",
+        "gender": "M",
         "birth": "Sun Jun 13 2010 22:09:09 GMT+0800 (台北標準時間)",
         "deptId": 6,
         "deptName": "中文系",
@@ -110,7 +110,7 @@
     {
         "id": 21037,
         "name": "Aline Meyers",
-        "sex": "F",
+        "gender": "F",
         "birth": "Sat Oct 10 2015 04:00:04 GMT+0800 (台北標準時間)",
         "deptId": 3,
         "deptName": "資工系",
@@ -122,7 +122,7 @@
     {
         "id": 16741,
         "name": "Todd Duffy",
-        "sex": "M",
+        "gender": "M",
         "birth": "Wed Jan 06 2010 11:37:07 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -134,7 +134,7 @@
     {
         "id": 11194,
         "name": "Burton Gibbs",
-        "sex": "M",
+        "gender": "M",
         "birth": "Sun Dec 24 1995 20:21:34 GMT+0800 (台北標準時間)",
         "deptId": 4,
         "deptName": "機械系",
@@ -146,7 +146,7 @@
     {
         "id": 13933,
         "name": "Jacobs Walker",
-        "sex": "F",
+        "gender": "F",
         "birth": "Wed Jun 20 2007 17:44:32 GMT+0800 (台北標準時間)",
         "deptId": 6,
         "deptName": "中文系",
@@ -158,7 +158,7 @@
     {
         "id": 14598,
         "name": "Huff Oneil",
-        "sex": "F",
+        "gender": "F",
         "birth": "Thu Jul 30 1998 11:49:42 GMT+0800 (台北標準時間)",
         "deptId": 5,
         "deptName": "應外系",
@@ -170,7 +170,7 @@
     {
         "id": 12641,
         "name": "Gibbs Dale",
-        "sex": "M",
+        "gender": "M",
         "birth": "Thu Jun 26 1997 12:23:17 GMT+0800 (台北標準時間)",
         "deptId": 1,
         "deptName": "資管系",
@@ -182,7 +182,7 @@
     {
         "id": 15194,
         "name": "Alyce Slater",
-        "sex": "M",
+        "gender": "M",
         "birth": "Thu Sep 03 1998 20:52:44 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -194,7 +194,7 @@
     {
         "id": 12537,
         "name": "Gladys Cohen",
-        "sex": "F",
+        "gender": "F",
         "birth": "Fri Feb 04 2011 14:12:28 GMT+0800 (台北標準時間)",
         "deptId": 4,
         "deptName": "機械系",
@@ -206,7 +206,7 @@
     {
         "id": 21477,
         "name": "Kaufman Simon",
-        "sex": "F",
+        "gender": "F",
         "birth": "Mon Jul 30 2007 15:14:06 GMT+0800 (台北標準時間)",
         "deptId": 1,
         "deptName": "資管系",
@@ -218,7 +218,7 @@
     {
         "id": 13738,
         "name": "Alisa Odonnell",
-        "sex": "F",
+        "gender": "F",
         "birth": "Thu Aug 31 2000 10:57:00 GMT+0800 (台北標準時間)",
         "deptId": 1,
         "deptName": "資管系",
@@ -230,7 +230,7 @@
     {
         "id": 18078,
         "name": "Cecile Hatfield",
-        "sex": "F",
+        "gender": "F",
         "birth": "Thu Jul 04 1996 02:31:52 GMT+0800 (台北標準時間)",
         "deptId": 4,
         "deptName": "機械系",
@@ -242,7 +242,7 @@
     {
         "id": 16412,
         "name": "Clarke Frazier",
-        "sex": "F",
+        "gender": "F",
         "birth": "Wed Oct 03 2007 01:03:03 GMT+0800 (台北標準時間)",
         "deptId": 5,
         "deptName": "應外系",
@@ -254,7 +254,7 @@
     {
         "id": 20502,
         "name": "Mcguire Barry",
-        "sex": "F",
+        "gender": "F",
         "birth": "Fri Sep 26 2003 19:39:09 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -266,7 +266,7 @@
     {
         "id": 18946,
         "name": "Chandra Mays",
-        "sex": "M",
+        "gender": "M",
         "birth": "Mon Aug 03 1998 05:31:48 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -278,7 +278,7 @@
     {
         "id": 15883,
         "name": "Olivia Macias",
-        "sex": "F",
+        "gender": "F",
         "birth": "Sun May 18 2003 14:55:24 GMT+0800 (台北標準時間)",
         "deptId": 2,
         "deptName": "企管系",
@@ -290,7 +290,7 @@
     {
         "id": 11835,
         "name": "Lopez Nielsen",
-        "sex": "M",
+        "gender": "M",
         "birth": "Tue Nov 12 2002 19:56:56 GMT+0800 (台北標準時間)",
         "deptId": 4,
         "deptName": "機械系",

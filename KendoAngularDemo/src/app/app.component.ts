@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     { deptName: "應外系", deptId: 5 },
     { deptName: "中文系", deptId: 6 },
   ];
-  
+
   queryModel = new QueryModel();
   ngOnInit() {
    this.gridDataService.getAllData().subscribe(
@@ -49,8 +49,8 @@ export class AppComponent implements OnInit {
         if (this.queryModel.id) {
           this.gridData = this.gridData.filter(item => item.id === this.queryModel.id);
         }
-        if (this.queryModel.sex) {
-          this.gridData = this.gridData.filter(item => item.sex === this.queryModel.sex);
+        if (this.queryModel.gender) {
+          this.gridData = this.gridData.filter(item => item.gender === this.queryModel.gender);
         }
         if (this.queryModel.grade) {
           this.gridData = this.gridData.filter(item => item.grade === this.queryModel.grade);
