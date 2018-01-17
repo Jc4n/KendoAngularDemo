@@ -18,10 +18,10 @@ export class AddComponent implements OnInit {
   defaultDepteList: { deptName: string, deptId: number } = { deptName: "請選擇", deptId: null };
   gradeList: Array<{ gradeName: string, grade: number }> = this.gridDataService.getGradeList();
   deptList: Array<{ deptName: string, deptId: number }> = this.gridDataService.getDeptList();
-  
+
   constructor(private gridDataService: GridDataService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   changeDept($event) {
     this.addData.deptId = $event.deptId;
     this.addData.deptName = $event.deptName;
@@ -30,9 +30,24 @@ export class AddComponent implements OnInit {
     this.addData.grade = $event.grade;
     this.addData.gradeName = $event.gradeName;
   }
+
+  /**
+   * 儲存新增資料
+   * 
+   * @param {NgForm} form 
+   * @memberof AddComponent
+   */
   saveData(form: NgForm) {
-    this.addData.id=parseNumber(this.addData.id);
-    this.save.emit({ form: form, data: this.addData });
+
+    if (form.valid) {
+      this.addData.id = parseNumber(this.addData.id);
+      this.save.emit({ form: form, data: this.addData });
+    } else {
+      Object.keys(form.controls).forEach(field => { // {1}
+        const control = form.controls[field];            // {2}
+        control.markAsTouched({ onlySelf: true });       // {3}
+      });
+    }
   }
   close() {
     this.closeWindow.emit();
