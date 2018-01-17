@@ -17,32 +17,34 @@ import { IntlModule } from '@progress/kendo-angular-intl';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { RippleModule } from '@progress/kendo-angular-ripple';
 import { GridModule } from '@progress/kendo-angular-grid';
-import { DialogModule } from '@progress/kendo-angular-dialog';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { genderPipe } from './customizePipes/gender.pipe';
 
 import { GridDataService } from './grid-data.service';
+import { AddComponent } from './add/add.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    genderPipe
+    genderPipe,
+    AddComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
 
-     // Register the modules
-     BrowserAnimationsModule,
-     ButtonsModule,
-     InputsModule,
-     DateInputsModule,
-     IntlModule,
-     DropDownsModule,
-     RippleModule,
-     GridModule,
-     DialogModule
+    // Register the modules
+    BrowserAnimationsModule,
+    ButtonsModule,
+    InputsModule,
+    DateInputsModule,
+    IntlModule,
+    DropDownsModule,
+    RippleModule,
+    GridModule,
+    DialogsModule
   ],
   providers: [GridDataService],
   bootstrap: [AppComponent]

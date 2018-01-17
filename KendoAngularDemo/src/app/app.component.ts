@@ -3,6 +3,7 @@ import { QueryModel } from './model/queryModel';
 import { GridModel } from './model/gridModel';
 import { NgForm } from '@angular/forms';
 import { GridDataService } from './grid-data.service';
+import { parseNumber } from '@progress/kendo-angular-intl/dist/es/main';
 
 @Component({
   selector: 'app-root',
@@ -12,32 +13,23 @@ import { GridDataService } from './grid-data.service';
 export class AppComponent implements OnInit {
   constructor(private gridDataService: GridDataService) { }
   public gridData: GridModel[];
-  defaultgradeList: { gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
-  gradeList: Array<{ gradeName: string, grade: number }> = [
-    { gradeName: "一年級", grade: 1 },
-    { gradeName: "二年級", grade: 2 },
-    { gradeName: "三年級", grade: 3 }
-  ];
-  deptList: Array<{ deptName: string, deptId: number }> = [
-    { deptName: "資管系", deptId: 1 },
-    { deptName: "企管系", deptId: 2 },
-    { deptName: "資工系", deptId: 3 },
-    { deptName: "機械系", deptId: 4 },
-    { deptName: "應外系", deptId: 5 },
-    { deptName: "中文系", deptId: 6 },
-  ];
-
+  dialogOpened: boolean = false;
+  windowOpened: boolean = false;
+  addResultMsg: string = '';
   queryModel = new QueryModel();
+  //取得下拉選單
+  defaultgradeList: { gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
+  gradeList: Array<{ gradeName: string, grade: number }> = this.gridDataService.getGradeList();
+  deptList: Array<{ deptName: string, deptId: number }> = this.gridDataService.getDeptList();
+
   ngOnInit() {
-   this.gridDataService.getAllData().subscribe(
-    r => {
-      this.gridData = r;
-    });
+    this.gridDataService.getAllData().subscribe(
+      r => {
+        this.gridData = r;
+      });
   }
-  onButtonClick() {
-    alert('search!');
-  }
- 
+
+
   onSubmit(form: NgForm) {
     this.gridDataService.getAllData().subscribe(
       r => {
@@ -47,7 +39,7 @@ export class AppComponent implements OnInit {
           this.gridData = this.gridData.filter(item => item.name.indexOf(this.queryModel.name) > -1);
         }
         if (this.queryModel.id) {
-          this.gridData = this.gridData.filter(item => item.id === this.queryModel.id);
+          this.gridData = this.gridData.filter(item => item.id === parseNumber(this.queryModel.id));
         }
         if (this.queryModel.gender) {
           this.gridData = this.gridData.filter(item => item.gender === this.queryModel.gender);
@@ -66,6 +58,7 @@ export class AppComponent implements OnInit {
         }
       });
   }
+
   changeDept($event) {
     this.queryModel.dept = new Array<number>();
     for (var i = 0; i < $event.length; i++) {
@@ -76,5 +69,23 @@ export class AppComponent implements OnInit {
   changeGrade($event) {
     this.queryModel.grade = $event.grade;
   }
-
+  open(component) {
+    this[component + 'Opened'] = true;
+  }
+  close(component) {
+    this[component + 'Opened'] = false;
+  }
+  addData($event: { form: NgForm, data: GridModel }) {
+    let count: number = this.gridData.filter(item => item.id === $event.data.id).length;
+    if (count > 0) {
+      this.addResultMsg = '學號已經存在，請重新輸入!';
+      this.open('dialog');
+      $event.form.reset();
+    } else {
+      this.gridData.push($event.data);
+      this.addResultMsg = '新增成功!';
+      this.open('dialog');
+      this.close('window');
+    }
+  }
 }

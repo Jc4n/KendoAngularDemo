@@ -4,10 +4,7 @@
             <tr>
                 <th>姓名</th>
                 <td>
-                    <input kendoTextBox id="name" [(ngModel)]="queryModel.name" name="name" required #name="ngModel">
-                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-                        Name is required
-                    </div>
+                    <input kendoTextBox id="name" [(ngModel)]="queryModel.name" name="name">
                 </td>
                 <th>性別</th>
                 <td>
@@ -20,23 +17,23 @@
             <tr>
                 <th>學號</th>
                 <td>
-                    <kendo-maskedtextbox type="number" id="id" [(ngModel)]="queryModel.id" name="id" [mask]="'00000'"></kendo-maskedtextbox>
+                    <kendo-maskedtextbox type="number" id="id" [(ngModel)]="queryModel.id" name="id" [mask]="'00000'" ></kendo-maskedtextbox>
                 </td>
                 <th>生日</th>
                 <td>
-                    <kendo-datepicker id="birthSt" [(ngModel)]="queryModel.birthSt" name="birthSt" [format]="'yyyy/MM/dd'" ></kendo-datepicker>~
-                    <kendo-datepicker id="birthEnd" [(ngModel)]="queryModel.birthEnd" name="birthEnd" [format]="'yyyy/MM/dd'" ></kendo-datepicker>
+                    <kendo-datepicker id="birthSt" [(ngModel)]="queryModel.birthSt" name="birthSt" [format]="'yyyy/MM/dd'" [max]="queryModel.birthEnd"></kendo-datepicker>~
+                    <kendo-datepicker id="birthEnd" [(ngModel)]="queryModel.birthEnd" name="birthEnd" [format]="'yyyy/MM/dd'" [min]="queryModel.birthSt"></kendo-datepicker>
                 </td>
             </tr>
             <tr>
                 <th>科系</th>
                 <td>
-                    <kendo-multiselect id="dept" (ngModel)="queryModel.dept" name="dept" [data]="deptList" [textField]="'deptName'" [valueField]="'deptId'"
+                    <kendo-multiselect id="dept" [(ngModel)]="queryModel.dept" name="dept" [data]="deptList" [textField]="'deptName'" [valueField]="'deptId'"
                         (valueChange)="changeDept($event)" [placeholder]="'請選擇科系'"></kendo-multiselect>
                 </td>
                 <th>年級</th>
                 <td>
-                    <kendo-dropdownlist id="grade" (ngModel)="queryModel.grade" name="grade" [data]="gradeList" [defaultItem]="defaultgradeList"
+                    <kendo-dropdownlist id="grade" [(ngModel)]="queryModel.grade" name="grade" [data]="gradeList" [defaultItem]="defaultgradeList"
                         [textField]="'gradeName'" [valueField]="'grade'" (valueChange)="changeGrade($event)">
                     </kendo-dropdownlist>
                 </td>
@@ -45,12 +42,12 @@
         <div id="btns">
             <button kendoButton type="submit" [primary]="true" [icon]="'search'">查詢</button>
             <button kendoButton (click)="searchForm.resetForm()" [icon]="'delete'">清除</button>
-            <button kendoButton (click)="onButtonClick()" [primary]="true" [icon]="'plus'">新增</button>
+            <button kendoButton (click)="open('window')" [primary]="true" [icon]="'plus'">新增</button>
         </div>
     </form>
     <br>
     <div id="grid">
-        <kendo-grid [data]="gridData" [height]="410">
+        <kendo-grid [data]="gridData" [height]="410" >
             <kendo-grid-column field="name" title="姓名" width="200">
             </kendo-grid-column>
             <kendo-grid-column field="id" title="學號" width="100">
@@ -66,8 +63,8 @@
             </kendo-grid-column>
             <kendo-grid-column field="birth" title="生日" width="150">
                 <ng-template kendoGridCellTemplate let-dataItem>
-                  {{dataItem.birth | date: 'yyyy/MM/dd'}}
-              </ng-template>
+                    {{dataItem.birth | date: 'yyyy/MM/dd'}}
+                </ng-template>
             </kendo-grid-column>
             <kendo-grid-column field="height" title="身高" width="100">
                 <ng-template kendoGridCellTemplate let-dataItem>
@@ -81,4 +78,13 @@
             </kendo-grid-column>
         </kendo-grid>
     </div>
+    <kendo-window title="新增" [minWidth]="800" [minHeight]="600" *ngIf="windowOpened" (close)="close('window')">
+        <add-content (save)="addData($event)" (closeWindow)="close('window')"></add-content>
+    </kendo-window>
+    <kendo-dialog title="訊息"  *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="250" [width]="450" style="z-index:10008">
+        <p style="margin: 30px; text-align: center;">{{addResultMsg}}</p>
+        <kendo-dialog-actions>
+            <button kendoButton (click)="close('dialog')">確定</button>
+        </kendo-dialog-actions>
+    </kendo-dialog>
 </div>
