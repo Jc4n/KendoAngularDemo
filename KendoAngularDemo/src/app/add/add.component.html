@@ -12,7 +12,7 @@
         <th>學號</th>
         <td>
           <kendo-maskedtextbox type="number" id="id" [(ngModel)]="addData.id" name="id" [mask]="'00000'" #id="ngModel" required></kendo-maskedtextbox>
-          <span [hidden]="id.valid || name.untouched" class="k-required">
+          <span [hidden]="id.valid || id.untouched" class="k-required">
             必填
           </span>
         </td>
@@ -24,14 +24,14 @@
           <label class="k-radio-label" for="addDataGenderM">男</label>
           <input type="radio" id="addDataGenderF" name="addDataGender" [(ngModel)]="addData.gender" class="k-radio" value="F" />
           <label class="k-radio-label" for="addDataGenderF">女</label>
-          <span [hidden]="addDataGender.valid || name.untouched" class="k-required">
+          <span [hidden]="addDataGender.valid || addDataGender.untouched" class="k-required">
             必填
           </span>
         </td>
         <th>生日</th>
         <td>
           <kendo-datepicker id="birth" [(ngModel)]="addData.birth" name="birth" [format]="'yyyy/MM/dd'" #birth="ngModel" required></kendo-datepicker>
-          <span [hidden]="birth.valid || name.untouched" class="k-required">
+          <span [hidden]="birth.valid || birth.untouched" class="k-required">
             必填
           </span>
         </td>
@@ -42,7 +42,7 @@
           <kendo-dropdownlist id="grade" [(ngModel)]="addData.grade" name="grade" [data]="gradeList" [defaultItem]="defaultgradeList"
             [textField]="'gradeName'" [valueField]="'grade'" (valueChange)="changeGrade($event)" #grade="ngModel" required>
           </kendo-dropdownlist>
-          <span [hidden]="grade.valid || name.untouched" class="k-required">
+          <span [hidden]="grade.valid || grade.untouched" class="k-required">
             必填
           </span>
         </td>
@@ -52,7 +52,7 @@
             [defaultItem]="defaultDepteList" [textField]="'deptName'" #deptId="ngModel" required
             [valueField]="'deptId'" (valueChange)="changeDept($event)">
           </kendo-dropdownlist>
-          <span [hidden]="deptId.valid || name.untouched" class="k-required">
+          <span [hidden]="deptId.valid || deptId.untouched" class="k-required">
             必填
           </span>
         </td>
@@ -62,7 +62,7 @@
         <td>
           <kendo-numerictextbox [(ngModel)]="addData.height" id="height" name="height" [spinners]="false"
             [min]="0.00" [step]="10"  [format]="'0.00 cm'" #height="ngModel" required></kendo-numerictextbox>
-          <span [hidden]="height.valid || name.untouched" class="k-required">
+          <span [hidden]="height.valid || height.untouched" class="k-required">
             必填
           </span>
         </td>
@@ -70,7 +70,7 @@
         <td>
           <kendo-numerictextbox [(ngModel)]="addData.weight" id="weight" name="weight" [spinners]="false"
             [min]="0.00" [step]="10"  [format]="'0.00 kg'" #weight="ngModel" required></kendo-numerictextbox>
-          <span [hidden]="weight.valid || name.untouched" class="k-required">
+          <span [hidden]="weight.valid || weight.untouched" class="k-required">
             必填
           </span>
         </td>

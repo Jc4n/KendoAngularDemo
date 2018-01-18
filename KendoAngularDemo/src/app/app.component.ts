@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
     this[component + 'Opened'] = false;
   }
   addData($event: { form: NgForm, data: GridModel }) {
-    let count: number = this.gridData.filter(item => item.id === $event.data.id).length;
+    let count: number = this.gridData.filter(item => item.id === parseNumber($event.data.id)).length;
     if (count > 0) {
       this.addResultMsg = '學號已經存在，請重新輸入!';
       this.open('dialog');
