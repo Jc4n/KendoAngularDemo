@@ -15,22 +15,29 @@ export class AppComponent implements OnInit {
   public gridData: GridModel[];
   dialogOpened: boolean = false;
   windowOpened: boolean = false;
-  addResultMsg: string = '';
-  queryModel = new QueryModel();
+  addResultMsg: string = ''; //新增送出訊息
+  queryModel = new QueryModel(); 
   //取得下拉選單
   defaultgradeList: { gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
   gradeList: Array<{ gradeName: string, grade: number }> = this.gridDataService.getGradeList();
   deptList: Array<{ deptName: string, deptId: number }> = this.gridDataService.getDeptList();
 
   ngOnInit() {
+    //取得資料
     this.gridDataService.getAllData().subscribe(
       r => {
         this.gridData = r;
       });
   }
 
-
+  /**
+   * 查詢資料
+   * 
+   * @param {NgForm} form 
+   * @memberof AppComponent
+   */
   onSubmit(form: NgForm) {
+    //重新取得資料後，加入查詢條件
     this.gridDataService.getAllData().subscribe(
       r => {
         this.gridData = r;
@@ -75,14 +82,22 @@ export class AppComponent implements OnInit {
   close(component) {
     this[component + 'Opened'] = false;
   }
-  addData($event: { form: NgForm, data: GridModel }) {
-    let count: number = this.gridData.filter(item => item.id === parseNumber($event.data.id)).length;
+
+
+  /**
+   * 新增資料
+   * 
+   * @param {GridModel} $event 
+   * @memberof AppComponent
+   */
+  addData($event: GridModel) {
+    //判斷學號是否存在，不存在才繼續往下做
+    let count: number = this.gridData.filter(item => item.id === $event.id).length;
     if (count > 0) {
       this.addResultMsg = '學號已經存在，請重新輸入!';
       this.open('dialog');
-      $event.form.reset();
     } else {
-      this.gridData.push($event.data);
+      this.gridData.push($event);
       this.addResultMsg = '新增成功!';
       this.open('dialog');
       this.close('window');

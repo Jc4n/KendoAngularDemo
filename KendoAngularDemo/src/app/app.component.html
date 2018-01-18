@@ -1,4 +1,5 @@
-<div style="width:90%;">
+<div style="width:90%;margin:0px auto;">
+    <br>
     <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
         <table style="width:100%">
             <tr>
@@ -81,7 +82,7 @@
     <kendo-window title="新增" [minWidth]="800" [minHeight]="600" *ngIf="windowOpened" (close)="close('window')">
         <add-content (save)="addData($event)" (closeWindow)="close('window')"></add-content>
     </kendo-window>
-    <kendo-dialog title="訊息"  *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="250" [width]="450" style="z-index:10008">
+    <kendo-dialog title="訊息"  *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="250" [width]="450" style="z-index:99999">
         <p style="margin: 30px; text-align: center;">{{addResultMsg}}</p>
         <kendo-dialog-actions>
             <button kendoButton (click)="close('dialog')">確定</button>
