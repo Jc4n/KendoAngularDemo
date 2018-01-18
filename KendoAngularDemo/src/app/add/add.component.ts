@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { GridModel } from '../model/gridModel';
 import { GridDataService } from '../grid-data.service';
-import { NgForm, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { parseNumber } from '@progress/kendo-angular-intl/dist/es/main';
 
 @Component({
@@ -64,7 +64,7 @@ export class AddComponent implements OnInit {
       this.addData.deptId = this.addForm.value.deptId.deptId;
       this.addData.deptName = this.addForm.value.deptId.deptName;
 
-      this.save.emit({ form: this.addForm, data: this.addData });
+      this.save.emit(this.addData);
     } else {
       Object.keys(this.addForm.controls).forEach(field => { // {1}
         const control = this.addForm.get(field);            // {2}

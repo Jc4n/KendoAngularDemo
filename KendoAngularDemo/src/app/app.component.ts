@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryModel } from './model/queryModel';
 import { GridModel } from './model/gridModel';
-import { NgForm,FormGroup } from '@angular/forms';
 import { GridDataService } from './grid-data.service';
 import { parseNumber } from '@progress/kendo-angular-intl/dist/es/main';
 
@@ -23,14 +22,20 @@ export class AppComponent implements OnInit {
   deptList: Array<{ deptName: string, deptId: number }> = this.gridDataService.getDeptList();
 
   ngOnInit() {
+    //取得資料
     this.gridDataService.getAllData().subscribe(
       r => {
         this.gridData = r;
       });
   }
 
-
-  onSubmit(form: NgForm) {
+  /**
+   * 查詢
+   * 
+   * @memberof AppComponent
+   */
+  onSubmit() {
+    //先取得資料，再加入查詢條件
     this.gridDataService.getAllData().subscribe(
       r => {
         this.gridData = r;
@@ -75,14 +80,20 @@ export class AppComponent implements OnInit {
   close(component) {
     this[component + 'Opened'] = false;
   }
-  addData($event: { form: NgForm, data: GridModel }) {
-    let count: number = this.gridData.filter(item => item.id === parseNumber($event.data.id)).length;
+  /**
+   * 新增資料
+   * 
+   * @param {GridModel} $event 
+   * @memberof AppComponent
+   */
+  addData($event: GridModel ) {
+    //判斷學號是否存在，不存在才新增
+    let count: number = this.gridData.filter(item => item.id === $event.id).length;
     if (count > 0) {
       this.addResultMsg = '學號已經存在，請重新輸入!';
       this.open('dialog');
-      $event.form.reset();
     } else {
-      this.gridData.push($event.data);
+      this.gridData.push($event);
       this.addResultMsg = '新增成功!';
       this.open('dialog');
       this.close('window');
