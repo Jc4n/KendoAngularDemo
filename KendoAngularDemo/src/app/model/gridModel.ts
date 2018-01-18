@@ -21,14 +21,14 @@ export class GridModel {
         height?: number,
         weight?: number
     } = {}) {
-        this.name = this.name || '';
-        this.gender = this.gender || '';
-        this.birth = this.birth || null;
-        this.deptName = this.deptName || '';
-        this.deptId = this.deptId || null;
-        this.grade = this.grade || null;
-        this.gradeName = this.gradeName || '';
-        this.height = this.height || null;
-        this.weight = this.weight || null;
+        this.name = options.name || '';
+        this.gender = options.gender || '';
+        this.birth = options.birth || null;
+        this.deptName = options.deptName || '';
+        this.deptId = options.deptId || null;
+        this.grade = options.grade || null;
+        this.gradeName = options.gradeName || '';
+        this.height = options.height || null;
+        this.weight = options.weight || null;
     }
 }
