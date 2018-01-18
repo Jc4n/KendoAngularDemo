@@ -1,60 +1,87 @@
 <div>
-  <form #addForm="ngForm" class="k-form-inline">
+  <p>Form value: {{ addForm.value | json }}</p>
+  <p>Form status: {{ addForm.status | json }}</p>
+  <form [formGroup]="addForm" class="k-form-inline" novalidate>
     <table style="width:100%">
       <tr>
         <th>姓名</th>
         <td>
-          <input kendoTextBox id="name" [(ngModel)]="addData.name" name="name" required #name="ngModel">
-          <div [hidden]="name.valid || name.untouched" class="alert alert-danger k-required">
+          <input kendoTextBox formControlName="name">
+          <span [hidden]="isFieldValid('name')" class="k-required">
             必填
-          </div>
+          </span>
         </td>
         <th>學號</th>
         <td>
-          <kendo-maskedtextbox type="number" id="id" [(ngModel)]="addData.id" name="id" [mask]="'00000'"></kendo-maskedtextbox>
+          <kendo-maskedtextbox type="number" [mask]="'00000'" formControlName="id"></kendo-maskedtextbox>
+          <span [hidden]="isFieldValid('id')" class="k-required">
+            必填
+          </span>
         </td>
       </tr>
       <tr>
         <th>性別</th>
         <td>
-          <input type="radio" id="addDataGenderM" name="addDataGender" [(ngModel)]="addData.gender" class="k-radio" value="M" />
+          <input type="radio" id="addDataGenderM" class="k-radio" value="M"  formControlName="gender"/>
           <label class="k-radio-label" for="addDataGenderM">男</label>
-          <input type="radio" id="addDataGenderF" name="addDataGender" [(ngModel)]="addData.gender" class="k-radio" value="F" />
+          <input type="radio" id="addDataGenderF" class="k-radio" value="F" formControlName="gender"/>
           <label class="k-radio-label" for="addDataGenderF">女</label>
+          <span [hidden]="isFieldValid('gender')" class="k-required">
+            必填
+          </span>
         </td>
         <th>生日</th>
         <td>
-          <kendo-datepicker id="birth" [(ngModel)]="addData.birth" name="birth" [format]="'yyyy/MM/dd'"></kendo-datepicker>
+          <kendo-datepicker [format]="'yyyy/MM/dd'" formControlName="birth"></kendo-datepicker>
+          <span [hidden]="isFieldValid('birth')" class="k-required">
+            必填
+          </span>
         </td>
       </tr>
       <tr>
         <th>年級</th>
         <td>
-          <kendo-dropdownlist id="grade" [(ngModel)]="addData.grade" name="grade" [data]="gradeList" [defaultItem]="defaultgradeList"
-            [textField]="'gradeName'" [valueField]="'grade'" (valueChange)="changeGrade($event)">
+          <kendo-dropdownlist  [data]="gradeList" [defaultItem]="defaultgradeList" [textField]="'gradeName'"
+            [valueField]="'grade'" (valueChange)="changeGrade($event)" formControlName="grade">
           </kendo-dropdownlist>
+          <span [hidden]="isFieldValid('grade')" class="k-required">
+            必填
+          </span>
+          <input hidden formControlName="gradeName">
         </td>
         <th>科系</th>
         <td>
-          <kendo-dropdownlist id="dept" [(ngModel)]="addData.dept" name="dept" [data]="deptList" [defaultItem]="defaultDepteList" [textField]="'deptName'"
-            [valueField]="'deptId'" (valueChange)="changeDept($event)">
+          <kendo-dropdownlist [data]="deptList" [defaultItem]="defaultDepteList" [textField]="'deptName'"
+            [valueField]="'deptId'" (valueChange)="changeDept($event)"  formControlName="deptId">
           </kendo-dropdownlist>
+          <span [hidden]="isFieldValid('deptId')" class="k-required">
+            必填
+          </span>
+          <input hidden formControlName="deptName">
         </td>
       </tr>
       <tr>
         <th>身高</th>
         <td>
-          <kendo-numerictextbox [(ngModel)]="addData.height" id="height" name="height" [spinners]="false" [min]="0.00" [step]="10"  [format]="'0.00 cm'"></kendo-numerictextbox>
+          <kendo-numerictextbox [spinners]="false" formControlName="height"
+            [min]="0.00" [step]="10" [format]="'0.00 cm'"></kendo-numerictextbox>
+          <span [hidden]="isFieldValid('height')" class="k-required">
+            必填
+          </span>
         </td>
         <th>體重</th>
         <td>
-          <kendo-numerictextbox [(ngModel)]="addData.weight" id="weight" name="weight" [spinners]="false" [min]="0.00" [step]="10"  [format]="'0.00 kg'"></kendo-numerictextbox>
+          <kendo-numerictextbox [spinners]="false" formControlName="weight"
+            [min]="0.00" [step]="10" [format]="'0.00 kg'"></kendo-numerictextbox>
+          <span [hidden]="isFieldValid('weight')" class="k-required">
+            必填
+          </span>
         </td>
       </tr>
     </table>
     <div class="text-right">
-        <button type="button" class="k-button" (click)="close()">取消</button>
-        <button type="submit" class="k-button k-primary" (click)="saveData(addForm)"[disabled]="!addForm.form.valid" >送出</button>
+      <button type="button" class="k-button" (click)="close()">取消</button>
+      <button type="submit" class="k-button k-primary" (click)="saveData(addForm)">送出</button>
     </div>
   </form>
 </div>

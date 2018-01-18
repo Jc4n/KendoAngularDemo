@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryModel } from './model/queryModel';
 import { GridModel } from './model/gridModel';
-import { NgForm } from '@angular/forms';
+import { NgForm,FormGroup } from '@angular/forms';
 import { GridDataService } from './grid-data.service';
 import { parseNumber } from '@progress/kendo-angular-intl/dist/es/main';
 
