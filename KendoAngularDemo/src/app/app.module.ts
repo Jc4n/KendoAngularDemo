@@ -34,7 +34,8 @@ import { AddComponent } from './add/add.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-
+    ReactiveFormsModule,
+    
     // Register the modules
     BrowserAnimationsModule,
     ButtonsModule,

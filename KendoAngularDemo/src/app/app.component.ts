@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryModel } from './model/queryModel';
 import { GridModel } from './model/gridModel';
-import { NgForm } from '@angular/forms';
+import { NgForm,FormGroup } from '@angular/forms';
 import { GridDataService } from './grid-data.service';
 import { parseNumber } from '@progress/kendo-angular-intl/dist/es/main';
 
@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
   close(component) {
     this[component + 'Opened'] = false;
   }
-  addData($event: { form: NgForm, data: GridModel }) {
+  addData($event: { form: FormGroup, data: GridModel }) {
     let count: number = this.gridData.filter(item => item.id === $event.data.id).length;
     if (count > 0) {
       this.addResultMsg = '學號已經存在，請重新輸入!';
