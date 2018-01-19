@@ -40,7 +40,6 @@ export class AddComponent implements OnInit {
   saveData(form: NgForm) {
     //表單驗證
     if (form.valid) {
-      this.addData.id = parseNumber(this.addData.id);
       this.save.emit(this.addData);
     } else {
       //表單驗證不通過，將每個控制項markAsTouched顯示提示訊息

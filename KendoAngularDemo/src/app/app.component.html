@@ -30,7 +30,7 @@
                 <th>科系</th>
                 <td>
                     <kendo-multiselect id="dept" [(ngModel)]="queryModel.dept" name="dept" [data]="deptList" [textField]="'deptName'" [valueField]="'deptId'"
-                        (valueChange)="changeDept($event)" [placeholder]="'請選擇科系'"></kendo-multiselect>
+                        [placeholder]="'請選擇科系'"></kendo-multiselect>
                 </td>
                 <th>年級</th>
                 <td>

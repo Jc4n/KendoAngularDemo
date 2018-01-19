@@ -5,7 +5,7 @@ export class QueryModel {
         public gender?: string,
         public birthSt?: Date,
         public birthEnd?: Date,
-        public dept?: number[],
+        public dept?: any[],
         public grade?: number
     ) { }
 }

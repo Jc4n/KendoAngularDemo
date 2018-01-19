@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   dialogOpened: boolean = false;
   windowOpened: boolean = false;
   addResultMsg: string = ''; //新增送出訊息
-  queryModel = new QueryModel(); 
+  queryModel = new QueryModel();
   //取得下拉選單
   defaultgradeList: { gradeName: string, grade: number } = { gradeName: "請選擇", grade: null };
   gradeList: Array<{ gradeName: string, grade: number }> = this.gridDataService.getGradeList();
@@ -37,6 +37,14 @@ export class AppComponent implements OnInit {
    * @memberof AppComponent
    */
   onSubmit(form: NgForm) {
+    //取得選擇的系所
+    let selectedDept = new Array<number>();
+    if (this.queryModel.dept) {
+      for (var i = 0; i < this.queryModel.dept.length; i++) {
+        selectedDept.push(this.queryModel.dept[i].deptId);
+      }
+    }
+
     //重新取得資料後，加入查詢條件
     this.gridDataService.getAllData().subscribe(
       r => {
@@ -54,8 +62,8 @@ export class AppComponent implements OnInit {
         if (this.queryModel.grade) {
           this.gridData = this.gridData.filter(item => item.grade === this.queryModel.grade);
         }
-        if (this.queryModel.dept && this.queryModel.dept.length > 0) {
-          this.gridData = this.gridData.filter(item => this.queryModel.dept.includes(item.deptId));
+        if (selectedDept && selectedDept.length > 0) {
+          this.gridData = this.gridData.filter(item => selectedDept.includes(item.deptId));
         }
         if (this.queryModel.birthSt) {
           this.gridData = this.gridData.filter(item => new Date(item.birth) >= this.queryModel.birthSt);
@@ -66,13 +74,6 @@ export class AppComponent implements OnInit {
       });
   }
 
-  changeDept($event) {
-    this.queryModel.dept = new Array<number>();
-    for (var i = 0; i < $event.length; i++) {
-      this.queryModel.dept.push($event[i].deptId);
-    }
-
-  }
   changeGrade($event) {
     this.queryModel.grade = $event.grade;
   }
@@ -92,7 +93,7 @@ export class AppComponent implements OnInit {
    */
   addData($event: GridModel) {
     //判斷學號是否存在，不存在才繼續往下做
-    let count: number = this.gridData.filter(item => item.id === $event.id).length;
+    let count: number = this.gridData.filter(item => item.id === parseNumber($event.id)).length;
     if (count > 0) {
       this.addResultMsg = '學號已經存在，請重新輸入!';
       this.open('dialog');
